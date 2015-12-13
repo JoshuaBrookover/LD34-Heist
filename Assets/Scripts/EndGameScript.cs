@@ -5,7 +5,7 @@ using System.Collections;
 public class EndGameScript : MonoBehaviour {
 
 	public Text scoreText;
-	public float screenPause = 15.0f;
+	public float screenPause = 10.0f;
 
 	// Use this for initialization
 	void Start () {
