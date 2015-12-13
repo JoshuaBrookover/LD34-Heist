@@ -6,6 +6,9 @@ public class Teller : MonoBehaviour {
     public bool hero = false;
     public Sprite ScaredSprite;
     public Sprite BraveSprite;
+    public Sprite ScaredSpriteFemale;
+    public Sprite BraveSpriteFemale;
+    public bool Female;
     float shake = 0.0f;
     float progress = 0.0f;
     Vector3 position = new Vector3(0, 0, 0);
@@ -123,13 +126,13 @@ public class Teller : MonoBehaviour {
 
         if (state == State.DASH && !target)
         {
-            GetComponent<SpriteRenderer>().sprite = BraveSprite;
+            GetComponent<SpriteRenderer>().sprite = Female ? BraveSpriteFemale : BraveSprite;
             Quaternion to = Quaternion.AngleAxis(Mathf.Sin(progress * 3.14159f * 2.0f * 5) * 20.0f, new Vector3(0, 0, 1));
             GetComponent<Transform>().rotation = Quaternion.Slerp(GetComponent<Transform>().rotation, to, 0.3f);
         }
         else
         {
-            GetComponent<SpriteRenderer>().sprite = ScaredSprite;
+            GetComponent<SpriteRenderer>().sprite = Female ? ScaredSpriteFemale : ScaredSprite;
             GetComponent<Transform>().rotation = Quaternion.Slerp(GetComponent<Transform>().rotation, Quaternion.identity, 0.01f);
         }
 	}
