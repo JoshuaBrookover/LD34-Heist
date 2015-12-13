@@ -46,6 +46,10 @@ public class GameScript : MonoBehaviour {
 		
 	}
 
+	public int GetScore() {
+		return score;
+	}
+
 	public void EndPhaseOne() {
  		TellerManager tellerManager = Object.FindObjectOfType<TellerManager>();
  		tellerManager.GameOver();
@@ -62,5 +66,11 @@ public class GameScript : MonoBehaviour {
 		yield return new WaitForSeconds(outroPause);
 
 		Object.FindObjectOfType<Fader>().Fade();
+	}
+
+	public void EndPhaseTwo() {
+		Debug.Log("EndPhaseTwo");
+		Object.FindObjectOfType<DistanceChecker>().enabled = false;
+		Application.LoadLevel("endgame");
 	}
 }

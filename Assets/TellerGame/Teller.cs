@@ -88,7 +88,7 @@ public class Teller : MonoBehaviour {
                     progress = 1.0f;
 
                     // game over
-                    GameObject.FindWithTag("GameManager").GetComponent<GameScript>().EndPhaseOne();
+                    Object.FindObjectOfType<GameScript>().EndPhaseOne();
                 }
                 break;
             }
