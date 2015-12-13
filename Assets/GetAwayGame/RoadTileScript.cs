@@ -9,12 +9,14 @@ public class RoadTileScript : MonoBehaviour
     public GameObject mObstacleInstance0;
     public GameObject mObstacleInstance1;
     public GameObject mObstacleInstance2;
-    public GameObject mObstacleInstance3;
+
+    public GameObject mDecorationInstance;
 
     private const int mNumRoadPieces = 3;
     private GameObject[] mRoadPieces = new GameObject[mNumRoadPieces];
     private float mSpawnX = 0;
     private float mLaneOffset = 1.1f;
+    private float mDecorationOffset = 4.0f;
 
     public const float mRoadSpeed = 12.0f;
     private float mRoadTileWidth = 0.0f;
@@ -24,8 +26,12 @@ public class RoadTileScript : MonoBehaviour
     float mSpawnTime = 0;
     float mNextSpawn = 0;
 
+    float mDecorationSpawnTime = 0;
+    float mDecorationNextSpawn = 0;
+
     public static bool mStopped = false;
     private bool mSpawnLane = false;
+    private bool mDecorationSpawnLane = false;
 
     private Vector3 mBasePosition;
 
@@ -92,10 +98,30 @@ public class RoadTileScript : MonoBehaviour
             Destroy(g);
             mObstacles.Remove(g);
         }
+        if(mDecorationSpawnTime > mDecorationNextSpawn)
+        {
+            int obstacleIndex = Random.Range(0, 3);
+            GameObject spawn = mDecorationInstance;
+            GameObject newDecoration = Instantiate(spawn);
+            Vector3 p = newDecoration.transform.position;
+            p.x = mSpawnX;
+            p.y = mBasePosition.y + (mDecorationSpawnLane ? -mDecorationOffset : mDecorationOffset);
+            newDecoration.transform.position = p;
+            mObstacles.Add(newDecoration);
+            mDecorationSpawnTime -= mDecorationNextSpawn;
+
+            mDecorationNextSpawn = Random.Range(0, 16) / 9.0f;
+            if (mDecorationNextSpawn < 0.5f)
+            {
+                mDecorationNextSpawn = 0.5f;
+            }
+
+            mDecorationSpawnLane = !mDecorationSpawnLane;
+        }
 
         if (mSpawnTime > mNextSpawn)
         {
-            int obstacleIndex = Random.Range(0, 3);
+            int obstacleIndex = Random.Range(0, 4);
             GameObject spawn;
             switch(obstacleIndex)
             {
@@ -105,11 +131,8 @@ public class RoadTileScript : MonoBehaviour
                 case 1:
                     spawn = mObstacleInstance1;
                     break;
-                case 2:
-                    spawn = mObstacleInstance2;
-                    break;
                 default:
-                    spawn = mObstacleInstance3;
+                    spawn = mObstacleInstance2;
                     break;
             }
 
@@ -146,6 +169,7 @@ public class RoadTileScript : MonoBehaviour
                 mNextSpawn = 1;
             }
         }
-        mSpawnTime += Time.deltaTime;       
+        mSpawnTime += Time.deltaTime;
+        mDecorationSpawnTime += Time.deltaTime;
 	}
 }
