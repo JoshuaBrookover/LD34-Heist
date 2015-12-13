@@ -15,7 +15,9 @@ public class SceneTeleportingScript : MonoBehaviour {
 	
     void OnTriggerEnter2D ( Collider2D other )
     {
-        Debug.Log ("Let's clean this up.");
+        if (other.attachedRigidbody == null) {
+            return;
+        }
 
         Vector2 itemPosition = other.attachedRigidbody.position;
 

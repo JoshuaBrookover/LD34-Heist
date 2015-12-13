@@ -45,6 +45,6 @@ public class GameScript : MonoBehaviour {
 	IEnumerator PhaseOneOutro()	{
 		yield return new WaitForSeconds(outroPause);
 
-		GetComponent<Fader>().Fade();
+		Object.FindObjectOfType<Fader>().Fade();
 	}
 }

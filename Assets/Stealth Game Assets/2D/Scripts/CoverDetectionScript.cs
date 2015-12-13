@@ -33,18 +33,6 @@ public class CoverDetectionScript : MonoBehaviour {
         }
 	}
 
-    void FixedUpdate ()
-    {
-        /*
-        if (parentalHandler == null) {
-            Debug.LogError ("Parent never got set");
-            return; // abort
-        }
-
-        this.Move (parentalHandler.GetMovmement ());
-        */
-    }
-
 
     /// <summary>
     /// This fires when a trigger collider contacts us.

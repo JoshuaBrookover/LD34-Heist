@@ -43,8 +43,7 @@ namespace UnityStandardAssets._2D
             }
 
             // If they hit the button.
-            if (Input.GetKey (KeyCode.Space) || 
-                Input.GetKey ( KeyCode.RightControl )) {
+            if (Input.GetKey (KeyCode.A)) {
                 m_DashRequested = true;
             }
         }
@@ -80,7 +79,6 @@ namespace UnityStandardAssets._2D
         /// <param name="caller">The Cover Object that called this, unused, but included to maintain the same signature.</param>
         void InCover (GameObject caller)
         {
-            Debug.Log ("Take Cover!");
             m_DashRequested = false;
             //m_Character.Move (0);
         }
