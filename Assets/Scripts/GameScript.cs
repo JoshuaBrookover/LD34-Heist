@@ -9,7 +9,7 @@ public class GameScript : MonoBehaviour {
 
 	int score = 0;
 	float outroPause = 1.0f;
-
+    int mPhaseOneMoney;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +28,20 @@ public class GameScript : MonoBehaviour {
 		}
 	}
 
+    public void LoseMoney()
+    {
+        score -= (int)(mPhaseOneMoney * 0.25f);
+        if(score < 0)
+        {
+            score = 0;
+        }
+
+        if (scoreText != null)
+        {
+            scoreText.text = "$" + score.ToString();
+        }
+    }
+
 	public void StartPhaseOne() {
 		
 	}
@@ -35,6 +49,8 @@ public class GameScript : MonoBehaviour {
 	public void EndPhaseOne() {
  		TellerManager tellerManager = Object.FindObjectOfType<TellerManager>();
  		tellerManager.GameOver();
+
+        mPhaseOneMoney = score;
 
  		Charge thrower = Object.FindObjectOfType<Charge>();
 		thrower.enabled = false;

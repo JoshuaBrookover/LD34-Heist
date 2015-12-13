@@ -114,7 +114,8 @@ public class DriveScript : MonoBehaviour
             return;
         }
 
-        mStop = true;
-        RoadTileScript.mStopped = true;
+//         mStop = true;
+//         RoadTileScript.mStopped = true;
+        Object.FindObjectOfType<GameScript>().LoseMoney();
     }
 }
