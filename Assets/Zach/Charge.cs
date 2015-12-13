@@ -6,6 +6,8 @@ public class Charge : MonoBehaviour
 	public GameObject cashSack;
 	public AnimationClip SuccessAnim;
 	public AnimationClip FailAnim;
+    public AudioClip ChaChingSound;
+    public AudioClip BuzzerSound;
 	public float chargePerSecond;
 	public float charge;
 	public float chargeFraction;
@@ -14,6 +16,7 @@ public class Charge : MonoBehaviour
 	public float correctCharge;
 	public float chargeValue;
 	bool canCharge = true;
+    AudioSource audioSource;
 	
 	// Use this for initialization
 	void Start () 
@@ -22,6 +25,7 @@ public class Charge : MonoBehaviour
 		chargeFraction = 0.0f;
 		// The correct charge is between 20% and 80%
 		correctCharge = Random.Range ( 0.2f, 0.8f);
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -54,12 +58,20 @@ public class Charge : MonoBehaviour
 			throwAnimation.AddClip( SuccessAnim, "GoodThrow");
 			throwAnimation.Play("GoodThrow");
 			Object.FindObjectOfType<GameScript>().GotMoneyBag();
+
+            audioSource.Stop();
+            audioSource.clip = ChaChingSound;
+            audioSource.Play();
 		}
 		else
 		{
 			//Lose
 			throwAnimation.AddClip( FailAnim, "BadThrow");
 			throwAnimation.Play("BadThrow");
+
+            audioSource.Stop();
+            audioSource.clip = BuzzerSound;
+            audioSource.Play();
 		}
 		
 		// The correct charge is between 20% and 80%
