@@ -7,6 +7,8 @@ public class CopScript : MonoBehaviour
     float mBobYOffset = 0.05f;
     Vector3 mOriginalPosition;
 
+    public bool mIsCar2;
+
     private float mTimeSeed;
 
     private float mAngle = 0;
@@ -17,11 +19,11 @@ public class CopScript : MonoBehaviour
     private float mStopForwardTimeMax = 0.5f;
 
     private float mBackawayTimer = 0.0f;
-    private float mBackawayReturnTime = 1.0f;
+    private float mBackawayReturnTime = 1.2f;
     private float mBackawayDirection = 1.0f;
     private float mBackawayPosition = 0.0f;
-    private float mBackawaySpeed = 0.5f;
-    private float mBackawayDistance = 3.0f;
+    private float mBackawaySpeed = 0.8f;
+    private float mBackawayDistance = 10.0f;
 
     private float mTime = 0.0f;
 
@@ -46,6 +48,8 @@ public class CopScript : MonoBehaviour
         mOriginalPosition = this.transform.position;
         mTimeSeed = (mOriginalPosition.x * 0.464f + mOriginalPosition.y * 0.2f) % 2 * Mathf.PI;
         mStopTurnAngle = ((float)Random.Range(256, 1024) / 1024.0f) - 0.5f;
+
+        GetComponent<Animator>().SetBool("car2", mIsCar2);
     }
 
     // Update is called once per frame
@@ -87,7 +91,7 @@ public class CopScript : MonoBehaviour
         this.transform.position = mOriginalPosition + new Vector3(xMove, yMove, 0);
 
         // If the player wrecked turn the cops and push them further.
-        if (RoadTileScript.mStopped)
+        if (RoadTileScript.mStopped && mBackawayDirection > 0)
         {
             Vector3 p = this.transform.position;
             mStopForwardTime += Time.deltaTime;

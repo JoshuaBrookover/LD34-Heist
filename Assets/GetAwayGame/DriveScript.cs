@@ -9,11 +9,11 @@ public class DriveScript : MonoBehaviour
     int mInLane = 1;
 
     float mBobXOffset = 0.003f;
-    float mBobYOffset = 0.02f;
+    float mBobYOffset = 0.04f;
 
     float mTurnAngleSpeed = 65.0f;
     float mMaxTurnAngle = 40.0f;
-    private float mLaneSwitchSpeed = 7.0f;
+    private float mLaneSwitchSpeed = 8.5f;
 
     Vector3 mOriginalPosition;
 
@@ -96,7 +96,7 @@ public class DriveScript : MonoBehaviour
         }
 
         Vector3 p = this.transform.position;
-        p.y = mOriginalPosition.y + mPosition * 1.1f;
+        p.y = mOriginalPosition.y + mPosition * 1.3f;
 
         float xMove = (Mathf.Sin(mTime) + Mathf.Sin(mTime + 1.256f)) * 0.5f * mBobXOffset;
         float yMove = (Mathf.Cos(mTime) + Mathf.Cos(mTime + 1.83f)) * 0.5f * mBobYOffset;

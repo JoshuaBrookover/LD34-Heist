@@ -5,14 +5,18 @@ using System.Collections.Generic;
 public class RoadTileScript : MonoBehaviour
 {
     public GameObject mRoadInstance;
-    public GameObject mBlockInstance;
 
-    private const int mNumRoadPieces = 5;
+    public GameObject mObstacleInstance0;
+    public GameObject mObstacleInstance1;
+    public GameObject mObstacleInstance2;
+    public GameObject mObstacleInstance3;
+
+    private const int mNumRoadPieces = 3;
     private GameObject[] mRoadPieces = new GameObject[mNumRoadPieces];
     private float mSpawnX = 0;
     private float mLaneOffset = 1.1f;
 
-    public const float mRoadSpeed = 8.0f;
+    public const float mRoadSpeed = 12.0f;
     private float mRoadTileWidth = 0.0f;
 
     private List<GameObject> mObstacles = new List<GameObject>();
@@ -21,6 +25,7 @@ public class RoadTileScript : MonoBehaviour
     float mNextSpawn = 0;
 
     public static bool mStopped = false;
+    private bool mSpawnLane = false;
 
     private Vector3 mBasePosition;
 
@@ -31,7 +36,7 @@ public class RoadTileScript : MonoBehaviour
 
         // Create road.
         var renderer = mRoadInstance.GetComponent<Renderer>();
-        mRoadTileWidth = renderer.bounds.size.x-0.0001f;
+        mRoadTileWidth = renderer.bounds.size.x-0.01f;
 
         mBasePosition = this.transform.parent.gameObject.transform.position;
 
@@ -41,7 +46,7 @@ public class RoadTileScript : MonoBehaviour
             mRoadPieces[i] = (GameObject)Instantiate(mRoadInstance) as GameObject;
             Vector3 pos = basePosition;
             pos.x += mRoadTileWidth * i;
-            //pos.y = 
+            pos.y -= 0.3f;
             mRoadPieces[i].transform.position = pos;
             mSpawnX = pos.x;
         }
@@ -77,7 +82,7 @@ public class RoadTileScript : MonoBehaviour
             g.transform.position = p;
 
             var renderer = g.GetComponent<Renderer>();
-            if(g.transform.position.x + 2*renderer.bounds.size.x < -10)
+            if(g.transform.position.x + 2*renderer.bounds.size.x < -20)
             {
                 objectsToRemove.Add(g);
             }
@@ -90,12 +95,47 @@ public class RoadTileScript : MonoBehaviour
 
         if (mSpawnTime > mNextSpawn)
         {
-            GameObject newObstacle = Instantiate(mBlockInstance);
+            int obstacleIndex = Random.Range(0, 3);
+            GameObject spawn;
+            switch(obstacleIndex)
+            {
+                case 0:
+                    spawn = mObstacleInstance0;
+                    break;
+                case 1:
+                    spawn = mObstacleInstance1;
+                    break;
+                case 2:
+                    spawn = mObstacleInstance2;
+                    break;
+                default:
+                    spawn = mObstacleInstance3;
+                    break;
+            }
+
+            GameObject newObstacle = Instantiate(spawn);
             Vector3 p = newObstacle.transform.position;
             p.x = mSpawnX;
 
-            int lane = Random.Range(0, 2);
-            p.y = mBasePosition.y + ((lane == 0) ? -mLaneOffset : mLaneOffset);            
+            // If it's a pot hole give it a random rotation
+            if (obstacleIndex != 0 && obstacleIndex != 1)
+            {
+                float randRotation = Random.Range(0, 359);
+                newObstacle.transform.rotation = Quaternion.AngleAxis(randRotation, Vector3.forward);
+            }
+            else
+            {
+                float randRotation = Random.Range(0, 40) - 20;
+                newObstacle.transform.rotation = Quaternion.AngleAxis(randRotation, Vector3.forward);
+            }
+
+            int laneSwitchRoll = Random.Range(0, 10);
+            if(laneSwitchRoll > 4)
+            {
+                mSpawnLane = !mSpawnLane;
+            }
+
+            p.y = mBasePosition.y + (mSpawnLane ? -mLaneOffset : mLaneOffset);            
             newObstacle.transform.position = p;
             mObstacles.Add(newObstacle);
             mSpawnTime -= mNextSpawn;
