@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 9e4be413f5976844a83f649da4021d67
-timeCreated: 1449952343
+timeCreated: 1450042419
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - mRoadInstance: {fileID: 188262, guid: 5b67956c9faca5e4b8bfdc805213da77, type: 2}
+  - mObstacleInstance0: {fileID: 172912, guid: 51198e5c61bd6974289dafb0ddd5269d, type: 2}
+  - mObstacleInstance1: {fileID: 146574, guid: c9c0c4789d3ea3a4b9b0dfc4910c9217, type: 2}
+  - mObstacleInstance2: {fileID: 133914, guid: d7566c099b11775409f73870c7ccd6f0, type: 2}
+  - mDecorationInstance: {fileID: 144310, guid: 5c8e7261b33acfd40ad3480bb06e6675,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
