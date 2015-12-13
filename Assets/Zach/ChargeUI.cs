@@ -26,7 +26,5 @@ public class ChargeUI : MonoBehaviour
 		Vector2 newChargeSpotPosition = 496.0f * playerCharge.chargeFraction * new Vector2( 1.0f, 0.0f );
 		newChargeSpotPosition.x += 8.0f;
 		chargeSpotRect.anchoredPosition = newChargeSpotPosition;
-
-		Debug.Log(playerCharge.chargeFraction);
 	}
 }
