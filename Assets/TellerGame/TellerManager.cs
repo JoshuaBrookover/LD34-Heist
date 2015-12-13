@@ -20,7 +20,7 @@ public class TellerManager : MonoBehaviour {
         tellers = (Teller[])FindObjectsOfType<Teller>().Clone();
         if (tellers.Length == 0)
         {
-            GameOver();
+            GameObject.FindWithTag("GameManager").GetComponent<GameScript>().EndPhaseOne();
             return;
         }
 
@@ -95,6 +95,10 @@ public class TellerManager : MonoBehaviour {
         }
 	}
 
-    void GameOver() {
+    public void GameOver() {
+        for (int i = 0; i < tellers.Length - 1; ++i) {
+            tellers[i].enabled = false;
+            this.enabled = false;
+        }
     }
 }
