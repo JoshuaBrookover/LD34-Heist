@@ -18,12 +18,12 @@ public class ChargeUI : MonoBehaviour
 	void LateUpdate () 
 	{
 		RectTransform sweetSpotRect = sweetSpot.GetComponent<RectTransform>();
-		Vector2 newSweetSpotPosition = 496.0f * playerCharge.correctCharge * new Vector2( 1.0f, 0.0f );
+		Vector2 newSweetSpotPosition = 397.0f * playerCharge.correctCharge * new Vector2( 1.0f, 0.0f );
 		newSweetSpotPosition.x += 8.0f;
 		sweetSpotRect.anchoredPosition = newSweetSpotPosition;
 		
 		RectTransform chargeSpotRect = charge.GetComponent<RectTransform>();
-		Vector2 newChargeSpotPosition = 496.0f * playerCharge.chargeFraction * new Vector2( 1.0f, 0.0f );
+		Vector2 newChargeSpotPosition = 397.0f * playerCharge.chargeFraction * new Vector2( 1.0f, 0.0f );
 		newChargeSpotPosition.x += 8.0f;
 		chargeSpotRect.anchoredPosition = newChargeSpotPosition;
 	}
