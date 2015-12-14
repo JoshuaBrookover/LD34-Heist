@@ -29,7 +29,7 @@ public class ChargeUI : MonoBehaviour
 
         if ( playerCharge.chargeFraction > playerCharge.correctCharge - playerCharge.chargeError && playerCharge.chargeFraction < playerCharge.correctCharge + playerCharge.chargeError )
         {
-            float newScale = ( playerCharge.chargeError * 10 ) - Mathf.Abs( ( playerCharge.correctCharge - playerCharge.chargeFraction ) * 10 );
+            float newScale = 4 * ( playerCharge.chargeError * 10 ) - Mathf.Abs( ( playerCharge.correctCharge - playerCharge.chargeFraction ) * 10 );
             chargeSpotRect.localScale = new Vector3(1 + newScale, 1 + newScale, 1);
         }
         else
