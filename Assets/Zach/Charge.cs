@@ -31,13 +31,19 @@ public class Charge : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if ( (Input.GetAxis( "First" ) > 0 && canCharge) || ( chargeFraction >= 1.0f ) )
+		if ( (Input.GetAxis( "First" ) > 0 && canCharge) )
 		{
 			Release();
 			charge = 0.0f;
 			canCharge = false;
 			StartCoroutine( ChargeCooldown() );
 		}
+        else if ( ( chargeFraction >= 1.0f ) )
+        {
+            charge = 0.0f;
+            canCharge = false;
+            correctCharge = Random.Range(0.2f, 0.8f);
+        }
 		// Generate 10% every second
 		charge += chargePerSecond * Time.deltaTime;
 		chargeFraction = Mathf.Min( charge / 100.0f, 1.0f);
