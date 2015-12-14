@@ -64,7 +64,7 @@ public class GameScript : MonoBehaviour {
 
     public void LoseMoney()
     {
-        score -= (int)(mPhaseOneMoney * 0.25f);
+        score -= (int)(mPhaseOneMoney * (1.0f/6.0f));
         if(score < 0)
         {
             score = 0;
