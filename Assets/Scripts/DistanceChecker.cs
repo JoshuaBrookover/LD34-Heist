@@ -4,6 +4,7 @@ using System.Collections;
 public class DistanceChecker : MonoBehaviour {
 
 	public float levelEndDistance = 200.0f;
+	public float distanceOffset = 0.0f;
 	public GameObject stealthPlayer;
 
 	public GameObject playerIcon;
@@ -12,7 +13,7 @@ public class DistanceChecker : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float endX = houseIcon.transform.position.x;
-		float currentX = Mathf.Max(stealthPlayer.transform.position.x, 0.0f);
+		float currentX = Mathf.Max(stealthPlayer.transform.position.x - distanceOffset, 0.0f);
 
 		float interp = currentX / levelEndDistance;
 

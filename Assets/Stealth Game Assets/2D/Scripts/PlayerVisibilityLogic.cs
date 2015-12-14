@@ -40,14 +40,8 @@ public class PlayerVisibilityLogic : MonoBehaviour {
         // Ignore if hidden.
         if (isVisible) {
             print ("Found you!");
-            this.gameObject.SetActive (false);
 
-            // Counter-call the Cop Car to stop, no return object needed.
-            caller.SendMessage (
-                "StopMoving", 
-                null, 
-                SendMessageOptions.DontRequireReceiver
-            );
+            GameObject.FindGameObjectWithTag("DistanceBar").GetComponent<DistanceChecker>().distanceOffset = this.transform.position.x;
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CoverDetectionScript : MonoBehaviour {
     [SerializeField] private bool isOccluding = false ; // A boolean that denotes if this object's colliders are occluding anything else.
@@ -9,6 +10,8 @@ public class CoverDetectionScript : MonoBehaviour {
 
     private Rigidbody2D m_Rigidbody2D;
 
+    [SerializeField] private List< Sprite > possibleSprites;
+
     void Awake()
     {
         if (parentalHandler == null) {
@@ -17,6 +20,8 @@ public class CoverDetectionScript : MonoBehaviour {
 
         // Setting up references.
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
+        GetComponent<SpriteRenderer>().sprite = possibleSprites[Random.Range(0, possibleSprites.Count)];
     }
 
 	/// <summary>
@@ -26,11 +31,11 @@ public class CoverDetectionScript : MonoBehaviour {
     /// We're updating the color of the cover so the player can tell when it's 'lit'.
     /// </remarks>
 	void Update () {
-        if (isOccluding) {
+        /*if (isOccluding) {
             GetComponent<SpriteRenderer> ().color = Color.red;
         } else {
             GetComponent<SpriteRenderer> ().color = Color.white;
-        }
+        }*/
 	}
 
 
