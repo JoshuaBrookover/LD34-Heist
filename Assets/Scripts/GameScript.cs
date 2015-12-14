@@ -4,6 +4,7 @@ using System.Collections;
 
 public class GameScript : MonoBehaviour {
 
+	public GameObject scoreParent;
 	public Text scoreText;
 	public int moneyBagScore = 1000;
 
@@ -19,6 +20,17 @@ public class GameScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
+	void OnLevelWasLoaded(int level) {
+
+		if (level == 3) { //cutscene2
+			scoreParent.SetActive(false);
+		} else if (level == 4) { //phase2
+			scoreParent.SetActive(true);
+		}
+	}
+
 
 	public void GotMoneyBag() {
 		score += moneyBagScore;
