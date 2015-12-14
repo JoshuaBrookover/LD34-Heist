@@ -18,7 +18,11 @@ public class RoadTileScript : MonoBehaviour
     private float mLaneOffset = 1.1f;
     private float mDecorationOffset = 4.0f;
 
-    public const float mRoadSpeed = 12.0f;
+    public const float mStartSpeed = 12.0f;
+    public const float mEndSpeed = 30.0f;
+    public const float mSpeedupTime = 60.0f;
+    public const float mAcceleration = (mEndSpeed - mStartSpeed) / mSpeedupTime;
+    public static float mRoadSpeed = mStartSpeed;
     private float mRoadTileWidth = 0.0f;
 
     private List<GameObject> mObstacles = new List<GameObject>();
@@ -39,6 +43,7 @@ public class RoadTileScript : MonoBehaviour
 	void Start () 
     {
         Random.seed = (int)System.DateTime.Now.Ticks & 0x0000FFFF;
+        mRoadSpeed = mStartSpeed;
 
         // Create road.
         var renderer = mRoadInstance.GetComponent<Renderer>();
@@ -66,6 +71,12 @@ public class RoadTileScript : MonoBehaviour
             return;
         }
 
+        mRoadSpeed += Time.deltaTime * mAcceleration;
+        if(mRoadSpeed > mEndSpeed)
+        {
+            mRoadSpeed = mEndSpeed;
+        }
+
         float moveDistance = mRoadSpeed * Time.deltaTime;
         for(int i = 0; i < mNumRoadPieces; i++)
         {
@@ -88,7 +99,7 @@ public class RoadTileScript : MonoBehaviour
             g.transform.position = p;
 
             var renderer = g.GetComponent<Renderer>();
-            if(g.transform.position.x + 2*renderer.bounds.size.x < -20)
+            if(g.transform.position.x + 2*renderer.bounds.size.x < -30)
             {
                 objectsToRemove.Add(g);
             }
