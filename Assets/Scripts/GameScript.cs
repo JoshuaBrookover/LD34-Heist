@@ -10,6 +10,11 @@ public class GameScript : MonoBehaviour {
     public AnimationClip MoneybagShake;
 	public int moneyBagScore = 1000;
 
+    public GameObject GainMoneyUI;
+    public AnimationClip GainMoneyAnim;
+    public GameObject LoseMoneyUI;
+    public AnimationClip LoseMoneyAnim;
+
 	int score = 0;
 	float outroPause = 1.0f;
     int mPhaseOneMoney;
@@ -43,6 +48,16 @@ public class GameScript : MonoBehaviour {
 		if ( scoreText != null ) {
             scoreText.text = "$" + score.ToString();
             gainMoneyAnim.Play("GainMoney");
+
+            GameObject sack = Instantiate(GainMoneyUI) as GameObject;
+            sack.transform.position = this.transform.position;
+            sack.transform.parent = this.gameObject.transform;
+            sack.AddComponent<Animation>();
+            Animation throwAnimation = sack.GetComponent<Animation>();
+
+            throwAnimation = GainMoneyUI.GetComponent<Animation>();
+            throwAnimation.AddClip(GainMoneyAnim, "GainMoneyUI");
+            throwAnimation.Play("GainMoneyUI");
 		}
 	}
 
@@ -57,6 +72,17 @@ public class GameScript : MonoBehaviour {
         if (scoreText != null)
         {
             scoreText.text = "$" + score.ToString();
+            gainMoneyAnim.Play("GainMoney");
+
+            GameObject sack = Instantiate(LoseMoneyUI) as GameObject;
+            sack.transform.position = this.transform.position;
+            sack.transform.parent = this.gameObject.transform;
+            sack.AddComponent<Animation>();
+            Animation throwAnimation = sack.GetComponent<Animation>();
+
+            throwAnimation = LoseMoneyUI.GetComponent<Animation>();
+            throwAnimation.AddClip(LoseMoneyAnim, "LoseMoneyUI");
+            throwAnimation.Play("LoseMoneyUI");
         }
     }
 
