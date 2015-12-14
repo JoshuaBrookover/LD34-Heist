@@ -27,7 +27,6 @@ GameObject:
   - 61: {fileID: 6127752}
   - 61: {fileID: 6153888}
   - 50: {fileID: 5061016}
-  - 114: {fileID: 11410994}
   - 114: {fileID: 11499046}
   - 114: {fileID: 11408454}
   - 95: {fileID: 9582456}
@@ -84,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.8, y: 1.06, z: 0}
+  m_LocalPosition: {x: 11.376171, y: -2.4132884, z: 0}
   m_LocalScale: {x: 2.7137585, y: 3.1175745, z: 1}
   m_Children:
   - {fileID: 446630}
@@ -170,20 +169,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   m_lerpForce: 0.8
---- !u!114 &11410994
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163740}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 145b9baacbfb98d4894c819466470eea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOccluding: 0
-  m_lerpForce: 0.2
-  m_MaxSpeed: 10
 --- !u!114 &11499046
 MonoBehaviour:
   m_ObjectHideFlags: 1

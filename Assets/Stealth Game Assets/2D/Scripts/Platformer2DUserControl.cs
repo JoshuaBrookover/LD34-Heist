@@ -64,6 +64,16 @@ namespace UnityStandardAssets._2D
                 movement = 1;
             }
 
+            if(m_DashRequested)
+            {
+                GetComponent<AudioSource>().UnPause();
+            }
+            else
+            {
+                GetComponent<AudioSource>().Pause();
+            }
+            
+
 
             //m_sceneMotionHandler.BroadcastPlayerMovment (movement);
             m_Character.Move (movement);

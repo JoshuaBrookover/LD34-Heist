@@ -116,6 +116,8 @@ public class DriveScript : MonoBehaviour
 
 //         mStop = true;
 //         RoadTileScript.mStopped = true;
+
+        GetComponent<AudioSource>().Play();
         Object.FindObjectOfType<GameScript>().LoseMoney();
     }
 }
