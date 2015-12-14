@@ -77,9 +77,9 @@ MonoBehaviour:
   m_lerpForce: 0.2
   m_MaxSpeed: 10
   possibleSprites:
-  - {fileID: 21300000, guid: 9c223501c17cc2148a8f1fde5c66ad4a, type: 3}
-  - {fileID: 21300000, guid: 8e6ac76ea6efe08498a88d026d8a4e2e, type: 3}
-  - {fileID: 21300000, guid: 3a2acaa511684fa458c8545085eb8f91, type: 3}
+  - {fileID: 21300000, guid: 061d4fea98b1915478ab8a8a90fb95ac, type: 3}
+  - {fileID: 21300000, guid: d63eb9641a7e1ec40bcd4eb4c07b32cb, type: 3}
+  - {fileID: 21300000, guid: 6934b50532e49a942a22d84f1759157e, type: 3}
 --- !u!212 &21258550
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -124,17 +124,17 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: possibleSprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 9c223501c17cc2148a8f1fde5c66ad4a,
+      objectReference: {fileID: 21300000, guid: 061d4fea98b1915478ab8a8a90fb95ac,
         type: 3}
     - target: {fileID: 0}
       propertyPath: possibleSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 8e6ac76ea6efe08498a88d026d8a4e2e,
+      objectReference: {fileID: 21300000, guid: d63eb9641a7e1ec40bcd4eb4c07b32cb,
         type: 3}
     - target: {fileID: 0}
       propertyPath: possibleSprites.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 3a2acaa511684fa458c8545085eb8f91,
+      objectReference: {fileID: 21300000, guid: 6934b50532e49a942a22d84f1759157e,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_SortingOrder

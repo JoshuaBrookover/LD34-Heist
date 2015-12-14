@@ -11,10 +11,13 @@ namespace UnityStandardAssets._2D
         private CoverPositionController m_sceneMotionHandler;
         private PlatformerCharacter2D m_Character;
         private PlayerVisibilityLogic m_visibiliy;
+        private float moveRamp = 0.0f;
+        private float distance = 0.0f;
 
         [SerializeField] private bool m_DashRequested = true;
 //        [SerializeField] private bool m_buttonDown;
         [SerializeField] private GameObject coverHandler;
+        [SerializeField] private GameObject playerRender;
 
         private float m_axisStrenght;
 
@@ -26,6 +29,7 @@ namespace UnityStandardAssets._2D
             //m_sceneMotionHandler = coverHandler.GetComponent<CoverPositionController>();
             m_Character = GetComponent<PlatformerCharacter2D> ();
             m_visibiliy = GetComponent<PlayerVisibilityLogic> ();
+            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
         }
 
@@ -46,6 +50,29 @@ namespace UnityStandardAssets._2D
             if (Input.GetButton("First")) {
                 m_DashRequested = true;
             }
+
+            if (m_DashRequested)
+            {
+                moveRamp += 0.1f;
+                if (moveRamp > 1)
+                {
+                    moveRamp = 1;
+                }
+                distance += Time.deltaTime;
+            }
+            else
+            {
+                moveRamp /= 2.0f;
+                if (moveRamp < 0.01f)
+                {
+                    moveRamp = 0;
+                }
+            }
+
+            float hop = Mathf.Abs(Mathf.Sin(distance * 3.14159f * 1.0f * 6)) * 0.5f * moveRamp;
+            float rot = Mathf.Sin(distance * 3.14159f * 1.0f * 6) * 0.5f * moveRamp * 45;
+            playerRender.transform.position = transform.position + new Vector3(0, hop, 0);
+            playerRender.transform.rotation = Quaternion.AngleAxis(rot, new Vector3(0, 0, 1));
         }
 
         /// <summary>
@@ -72,12 +99,15 @@ namespace UnityStandardAssets._2D
             {
                 GetComponent<AudioSource>().Pause();
             }
+
+            if (movement > 0)
+            {
+            }
             
 
 
             //m_sceneMotionHandler.BroadcastPlayerMovment (movement);
             m_Character.Move (movement);
-
         }
 
         /// <summary>
