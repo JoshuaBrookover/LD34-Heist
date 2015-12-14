@@ -54,7 +54,7 @@ public class EndGameScript : MonoBehaviour {
         SetText(mMoneyCounter);
 
 
-        if (mWaitTime > screenPause || Input.GetButtonDown("SkipDialog"))
+        if (mWaitTime > screenPause || Input.GetButtonDown("First"))
         {
             //yield return new WaitForSeconds(screenPause);
             Application.LoadLevel("menu");     

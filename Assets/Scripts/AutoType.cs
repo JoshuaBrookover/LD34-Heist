@@ -40,7 +40,7 @@ public class AutoType : MonoBehaviour {
 	}
 
 	void Update() {
-		if ((stage == DialogStage.Typing || stage == DialogStage.Pausing) && Input.GetButtonDown("SkipDialog")) {
+		if ((stage == DialogStage.Typing || stage == DialogStage.Pausing) && Input.GetButtonDown("First")) {
 			Skip();
 		}
 	}

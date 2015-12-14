@@ -20,7 +20,14 @@ public class MenuScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
+        if (Input.GetButtonDown("First")) {
+			fader.FadeToLevel("cutscene1", 0.75f);
+       		enabled = false;
+        } else if (Input.GetButtonDown("Second")) {
+			Application.Quit();
+       		enabled = false;
+        }
 	}
 
 	public void ExitPress()
@@ -39,7 +46,6 @@ public class MenuScript : MonoBehaviour {
 
 	public void StartLevel()
 	{
-		fader.FadeToLevel("cutscene1", 0.75f);
 		startText.interactable = false;
 		exitText.interactable = false;
 		quitMenu.enabled = false;
