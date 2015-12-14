@@ -73,6 +73,7 @@ public class GameScript : MonoBehaviour {
         if (scoreText != null)
         {
             scoreText.text = "$" + score.ToString();
+
             gainMoneyAnim.Play("GainMoney");
 
             GameObject sack = Instantiate(LoseMoneyUI) as GameObject;
@@ -81,6 +82,8 @@ public class GameScript : MonoBehaviour {
 
             throwAnimation.AddClip(LoseMoneyAnim, "LoseMoneyUI");
             throwAnimation.Play("LoseMoneyUI");
+
+            sack.GetComponent<Text>().text = " -$" + (int)(mPhaseOneMoney * 0.25f);
         }
     }
 
