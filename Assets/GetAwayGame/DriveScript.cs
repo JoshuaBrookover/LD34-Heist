@@ -65,7 +65,7 @@ public class DriveScript : MonoBehaviour
             mTime = Time.realtimeSinceStartup % 2 * Mathf.PI;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Second"))
         {
             mDirection = !mDirection;
 

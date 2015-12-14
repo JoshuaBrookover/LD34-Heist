@@ -43,7 +43,7 @@ namespace UnityStandardAssets._2D
             }
 
             // If they hit the button.
-            if (Input.GetKey (KeyCode.A)) {
+            if (Input.GetButton("First")) {
                 m_DashRequested = true;
             }
         }

@@ -80,7 +80,7 @@ public class TellerManager : MonoBehaviour {
             soundIndexScared++;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Second"))
         {
             tellers[target].target = false;
             target = (target + 1) % tellers.Length;
@@ -99,14 +99,6 @@ public class TellerManager : MonoBehaviour {
                 tellerComplainIndex = hero;
                 yell = false;
             }
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            parallax.offset -= 0.1f;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            parallax.offset += 0.1f;
         }
         parallax.offset = Mathf.Lerp(parallax.offset, tellers[target].GetTargetParallax(), 0.3f);
 
