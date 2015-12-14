@@ -14,7 +14,6 @@ public class DistanceChecker : MonoBehaviour {
 		float endX = houseIcon.transform.position.x;
 		float currentX = Mathf.Max(stealthPlayer.transform.position.x, 0.0f);
 
-
 		float interp = currentX / levelEndDistance;
 
 		RectTransform rect = playerIcon.GetComponent<RectTransform>();
@@ -22,7 +21,8 @@ public class DistanceChecker : MonoBehaviour {
 		rect.anchoredPosition = new Vector2(endX * interp, pos.y);
 
 		Debug.Log("interp " + interp.ToString());
-		if ( interp >= 1.0f ) {
+        if (rect.anchoredPosition.x >= houseIcon.GetComponent<RectTransform>().anchoredPosition.x)
+        {
 			// game over
             Object.FindObjectOfType<GameScript>().EndPhaseTwo();
 		}

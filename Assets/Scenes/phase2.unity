@@ -29066,7 +29066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c149a5272785b7c4da4238cf9e01432e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelEndDistance: 20
+  levelEndDistance: 165
   stealthPlayer: {fileID: 1264578331}
   playerIcon: {fileID: 1618119493}
   houseIcon: {fileID: 765137574}
