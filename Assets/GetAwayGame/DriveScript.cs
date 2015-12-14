@@ -68,6 +68,17 @@ public class DriveScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             mDirection = !mDirection;
+
+            var screech = GetComponents<AudioSource>()[2];
+            if(!screech.isPlaying)
+            {
+                screech.Play();
+
+                int rand = Random.Range(0, 41);
+                rand -= 20;
+                float pitchAdjust = (rand / 20.0f) * 0.2f;
+                screech.pitch = 1.0f + pitchAdjust;
+            }
         }
 
         if (mDirection == false && mInLane != -1)
@@ -117,7 +128,7 @@ public class DriveScript : MonoBehaviour
 //         mStop = true;
 //         RoadTileScript.mStopped = true;
 
-        GetComponent<AudioSource>().Play();
+        GetComponents<AudioSource>()[0].Play();
         Object.FindObjectOfType<GameScript>().LoseMoney();
     }
 }
