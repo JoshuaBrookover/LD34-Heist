@@ -14,8 +14,11 @@ public class Charge : MonoBehaviour
 	public float cooldownTime;
 	public float chargeError;
 	public float correctCharge;
-	public float chargeValue;
+    public float chargeValue;
+    public float delay;
 	bool canCharge = true;
+    bool startDelay = false;
+    bool startToss = false;
     AudioSource audioSource;
 	
 	// Use this for initialization
@@ -31,23 +34,32 @@ public class Charge : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-        canCharge = true;
-		if ( (Input.GetButtonDown( "First" ) && canCharge) )
-		{
-			Release();
-			charge = 0.0f;
-			canCharge = false;
-			StartCoroutine( ChargeCooldown() );
-		}
-        else if ( ( chargeFraction >= 1.0f ) )
+        if ( !startDelay )
         {
-            charge = 0.0f;
-            canCharge = false;
-            correctCharge = Random.Range(0.2f, 0.8f);
+            StartCoroutine(StartDelay());
         }
-		// Generate 10% every second
-		charge += chargePerSecond * Time.deltaTime;
-		chargeFraction = Mathf.Min( charge / 100.0f, 1.0f);
+
+        if ( startToss )
+        {
+            canCharge = true;
+            if ((Input.GetButtonDown("First") && canCharge))
+            {
+                Release();
+                charge = 0.0f;
+                canCharge = false;
+                StartCoroutine(ChargeCooldown());
+            }
+            else if ((chargeFraction >= 1.0f))
+            {
+                charge = 0.0f;
+                canCharge = false;
+                correctCharge = Random.Range(0.2f, 0.8f);
+            }
+            // Generate 10% every second
+            charge += chargePerSecond * Time.deltaTime;
+            chargeFraction = Mathf.Min(charge / 100.0f, 1.0f);
+        }
+        
 	}
 	
 	void Release()
@@ -92,4 +104,10 @@ public class Charge : MonoBehaviour
 		yield return new WaitForSeconds( cooldownTime );
 		canCharge = true;
 	}
+
+    IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(delay);
+        startToss = true;
+    }
 }
