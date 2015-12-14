@@ -128,14 +128,18 @@ public class DriveScript : MonoBehaviour
 //         mStop = true;
 //         RoadTileScript.mStopped = true;
 
-
         var smash = GetComponents<AudioSource>()[0];
         smash.Play();
         int rand = Random.Range(0, 41);
         rand -= 20;
         float pitchAdjust = (rand / 20.0f) * 0.2f;
         smash.pitch = 1.0f + pitchAdjust;
-        
+
+        var gameScript = Object.FindObjectOfType<GameScript>();
         Object.FindObjectOfType<GameScript>().LoseMoney();
+        if(gameScript.GetScore() == 0)
+        {
+            gameScript.EndPhaseTwo();
+        }
     }
 }
