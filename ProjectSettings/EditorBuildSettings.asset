@@ -12,6 +12,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/phase1.unity
   - enabled: 1
+    path: Assets/Scenes/cutscene2.unity
+  - enabled: 1
     path: Assets/Scenes/phase2.unity
   - enabled: 1
     path: Assets/Scenes/endgame.unity
