@@ -28,10 +28,10 @@ public class RoadTileScript : MonoBehaviour
     private List<GameObject> mObstacles = new List<GameObject>();
 
     float mSpawnTime = 0;
-    float mNextSpawn = 0;
+    float mNextSpawn = 12;
 
     float mDecorationSpawnTime = 0;
-    float mDecorationNextSpawn = 0;
+    float mDecorationNextSpawn = 1;
 
     public static bool mStopped = false;
     private bool mSpawnLane = false;

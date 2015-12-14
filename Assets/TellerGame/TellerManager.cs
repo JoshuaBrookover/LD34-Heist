@@ -19,7 +19,8 @@ public class TellerManager : MonoBehaviour {
     bool tellerComplain = false;
     int tellerComplainIndex;
     bool yell = false;
-    bool first = true;
+    int complainChance = 1;
+    float noHeroTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -54,7 +55,8 @@ public class TellerManager : MonoBehaviour {
         hero = target;
         tellers[target].target = true;
 
-        timer = 5;
+        timer = 13;
+        noHeroTimer = 18;
     }
 	
 	// Update is called once per frame
@@ -66,7 +68,7 @@ public class TellerManager : MonoBehaviour {
             bool female = tellers[tellerComplainIndex].Female;
             if (female)
             {
-                audioSource.volume = 0.08f;
+                audioSource.volume = 0.1f;
                 soundIndexScared = soundIndexScared % scaredAudioFemale.Count;
                 audioSource.clip = scaredAudioFemale[soundIndexScared];
                 audioSource.Play();
@@ -78,6 +80,7 @@ public class TellerManager : MonoBehaviour {
                 audioSource.clip = scaredAudioMale[soundIndexScared];
                 audioSource.Play();
             }
+            tellers[tellerComplainIndex].SetTalking(true);
             soundIndexScared++;
         }
 
@@ -86,6 +89,10 @@ public class TellerManager : MonoBehaviour {
             tellers[target].target = false;
             target = (target + 1) % tellers.Length;
             tellers[target].target = true;
+            if (noHeroTimer > 0)
+            {
+                tellers[target].hero = false;
+            }
             if (hero == target && yell)
             {
                 if (audioSource.isPlaying)
@@ -93,12 +100,21 @@ public class TellerManager : MonoBehaviour {
                     audioSource.Stop();
                 }
                 audioSource.clip = threatenAudio[soundIndex];
-                audioSource.volume = 0.2f;
+                audioSource.volume = 0.1f;
                 audioSource.Play();
                 soundIndex = (soundIndex + 1) % threatenAudio.Count;
-                tellerComplain = Random.Range(0, 5) == 0;
+                tellerComplain = Random.Range(0, complainChance) == 0;
                 tellerComplainIndex = hero;
                 yell = false;
+
+                if (tellerComplain)
+                {
+                    complainChance = 5;
+                }
+                else
+                {
+                    --complainChance;
+                }
             }
         }
         parallax.offset = Mathf.Lerp(parallax.offset, tellers[target].GetTargetParallax(), 0.3f);
@@ -106,6 +122,10 @@ public class TellerManager : MonoBehaviour {
         foreach (Teller teller in tellers)
         {
             teller.DoStuff();
+            if (!audioSource.isPlaying)
+            {
+                teller.SetTalking(false);
+            }
         }
 
         if (!audioSource.isPlaying)
@@ -115,9 +135,9 @@ public class TellerManager : MonoBehaviour {
         if (timer < 0 )
         {
             timer = Random.Range(1, 3);
-            if (hero == target || first)
+            if (hero == target || !tellers[hero].hero)
             {
-                if (first)
+                if (noHeroTimer > 0)
                 {
                     hero = target;
                 }
@@ -130,8 +150,11 @@ public class TellerManager : MonoBehaviour {
                 }
                 tellers[hero].hero = true;
                 yell = true;
-                first = false;
             }
+        }
+        if (noHeroTimer > 0)
+        {
+            noHeroTimer -= Time.deltaTime;
         }
 	}
 

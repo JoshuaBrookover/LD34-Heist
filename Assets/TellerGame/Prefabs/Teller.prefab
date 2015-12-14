@@ -48,6 +48,7 @@ MonoBehaviour:
   BraveSpriteFemale: {fileID: 21300000, guid: be4211ec5c72b92458e34dd4c4a158e1, type: 3}
   Female: 0
   ExclamationPrefab: {fileID: 156578, guid: d0db13cdef1f1d54eb640de893959b1a, type: 2}
+  SpeechPrefab: {fileID: 107888, guid: dcccb4864e0073a47ac7cf673be8dcab, type: 2}
 --- !u!212 &21235934
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -113,6 +114,10 @@ Prefab:
       propertyPath: ExclamationPrefab
       value: 
       objectReference: {fileID: 156578, guid: d0db13cdef1f1d54eb640de893959b1a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: SpeechPrefab
+      value: 
+      objectReference: {fileID: 107888, guid: dcccb4864e0073a47ac7cf673be8dcab, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165158}
