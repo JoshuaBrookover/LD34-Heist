@@ -82,6 +82,8 @@ public class Charge : MonoBehaviour
             audioSource.clip = ChaChingSound;
             audioSource.volume = 0.08f;
             audioSource.Play();
+
+            chargePerSecond += 1;
 		}
 		else
 		{
