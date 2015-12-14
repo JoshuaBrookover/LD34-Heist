@@ -80,7 +80,7 @@ public class Charge : MonoBehaviour
 
             audioSource.Stop();
             audioSource.clip = ChaChingSound;
-            audioSource.volume = 0.08f;
+            audioSource.volume = 0.1f;
             audioSource.Play();
 
             chargePerSecond += 1;
@@ -93,7 +93,7 @@ public class Charge : MonoBehaviour
 
             audioSource.Stop();
             audioSource.clip = BuzzerSound;
-            audioSource.volume = 0.07f;
+            audioSource.volume = 0.08f;
             audioSource.Play();
 		}
 		

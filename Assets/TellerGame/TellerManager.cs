@@ -129,6 +129,7 @@ public class TellerManager : MonoBehaviour {
 	}
 
     public void GameOver() {
+        GetComponents<AudioSource>()[1].Play();
         for (int i = 0; i < tellers.Length - 1; ++i) {
             tellers[i].enabled = false;
             this.enabled = false;
