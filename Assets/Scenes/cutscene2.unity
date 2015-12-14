@@ -1030,7 +1030,7 @@ MonoBehaviour:
   linePause: 0.75
   letterPause: 0.001
   nextPause: 3
-  symbolPause: 0.4
+  symbolPause: 0
   sound: {fileID: 0}
   specials:
   - {fileID: 1252498429}
