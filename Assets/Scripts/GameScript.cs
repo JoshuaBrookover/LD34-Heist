@@ -36,6 +36,8 @@ public class GameScript : MonoBehaviour {
 
 		if (level == 3) { //cutscene2
 			scoreParent.SetActive(false);
+			Object.FindObjectOfType<MoneyHolder>().money.text = "$" + score.ToString();
+
 		} else if (level == 4) { //phase2
 			scoreParent.SetActive(true);
 		}
