@@ -211,6 +211,11 @@ MonoBehaviour:
   Moneybag: {fileID: 1388309048}
   MoneybagShake: {fileID: 7400000, guid: 4afa8e32965cc5943a39e0c12496dd67, type: 2}
   moneyBagScore: 1000
+  GainMoneyUI: {fileID: 119172, guid: e126040876bfdd649810faf1827ab7c7, type: 2}
+  GainMoneyAnim: {fileID: 7400000, guid: b0c44b921d14e9c40aaa8341d7687d70, type: 2}
+  LoseMoneyUI: {fileID: 102668, guid: 5d88369fa03ea1848a124df09bf1667c, type: 2}
+  LoseMoneyAnim: {fileID: 7400000, guid: 720226e98deea8840ab769b4d1aa0b2a, type: 2}
+  UICanvas: {fileID: 1489330297}
 --- !u!4 &82651843
 Transform:
   m_ObjectHideFlags: 0
@@ -1780,6 +1785,7 @@ GameObject:
   - 222: {fileID: 1388309051}
   - 114: {fileID: 1388309050}
   - 111: {fileID: 1388309052}
+  - 114: {fileID: 1388309053}
   m_Layer: 5
   m_Name: moneybag
   m_TagString: Untagged
@@ -1848,10 +1854,22 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 4afa8e32965cc5943a39e0c12496dd67, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 4afa8e32965cc5943a39e0c12496dd67, type: 2}
+  - {fileID: 7400000, guid: b0c44b921d14e9c40aaa8341d7687d70, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1388309053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1388309048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0ac2d6531bba45bcce94ae1e6417d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1404687866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,6 +2547,10 @@ Prefab:
       propertyPath: m_Volume
       value: 0.184
       objectReference: {fileID: 0}
+    - target: {fileID: 11159138, guid: 6103f905a82b9b54b9b70f0936884828, type: 2}
+      propertyPath: m_Animations.Array.data[2]
+      value: 
+      objectReference: {fileID: 7400000, guid: b0c44b921d14e9c40aaa8341d7687d70, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6103f905a82b9b54b9b70f0936884828, type: 2}
   m_IsPrefabParent: 0

@@ -40,14 +40,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -58.5
-        inSlope: 207.1
-        outSlope: 207.1
+        value: 36.3
+        inSlope: 112.3
+        outSlope: 112.3
         tangentMode: 10
       - time: 1
         value: 148.6
-        inSlope: 207.1
-        outSlope: 207.1
+        inSlope: 112.3
+        outSlope: 112.3
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -190,14 +190,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: -58.5
-        inSlope: 207.1
-        outSlope: 207.1
+        value: 36.3
+        inSlope: 112.3
+        outSlope: 112.3
         tangentMode: 10
       - time: 1
         value: 148.6
-        inSlope: 207.1
-        outSlope: 207.1
+        inSlope: 112.3
+        outSlope: 112.3
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -290,4 +290,11 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1
+    functionName: DestroySelf
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
