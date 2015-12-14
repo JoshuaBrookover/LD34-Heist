@@ -951,7 +951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &736523817
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1022,7 +1022,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1883,7 +1883,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11442762, guid: 01f66d999a1a40746b2539870a20995b, type: 2}
       propertyPath: m_Text
-      value: "Alright friend this is a big job.\r\nIf we do things right, we could
+      value: "Alright partner this is a big job.\r\nIf we do things right, we could
         walk away very @         "
       objectReference: {fileID: 0}
     - target: {fileID: 190354, guid: 01f66d999a1a40746b2539870a20995b, type: 2}
@@ -2838,6 +2838,48 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1001 &2079969474
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -12.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 6.3475604
+      objectReference: {fileID: 0}
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 434310, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b46c7ff5bd8ed454ea5ca894431f1b8f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2091405674
 GameObject:
   m_ObjectHideFlags: 0
