@@ -25,10 +25,14 @@ public class EndGameScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        int score = 0;
+        
         GameScript gameScript = Object.FindObjectOfType<GameScript>();
-        int score = gameScript.GetScore();
+        if ( gameScript != null ) {
+            score = gameScript.GetScore();
+            GameObject.Destroy(gameScript.gameObject);
+        }
         mScore = score;
-		GameObject.Destroy(gameScript.gameObject);
         mWaitTime = 0;
 
         SetText(score);
@@ -50,7 +54,7 @@ public class EndGameScript : MonoBehaviour {
         SetText(mMoneyCounter);
 
 
-        if (mWaitTime > screenPause)
+        if (mWaitTime > screenPause || Input.GetButtonDown("SkipDialog"))
         {
             //yield return new WaitForSeconds(screenPause);
             Application.LoadLevel("menu");     
