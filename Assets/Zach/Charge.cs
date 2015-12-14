@@ -83,7 +83,7 @@ public class Charge : MonoBehaviour
             audioSource.volume = 0.1f;
             audioSource.Play();
 
-            chargePerSecond += 1;
+            chargePerSecond += 0.1f;
 		}
 		else
 		{

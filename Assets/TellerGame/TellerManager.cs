@@ -18,7 +18,8 @@ public class TellerManager : MonoBehaviour {
     int soundIndexScared = 0;
     bool tellerComplain = false;
     int tellerComplainIndex;
-    bool yell = true;
+    bool yell = false;
+    bool first = true;
 
 	// Use this for initialization
 	void Start () {
@@ -53,7 +54,7 @@ public class TellerManager : MonoBehaviour {
         hero = target;
         tellers[target].target = true;
 
-        timer = 0;
+        timer = 5;
     }
 	
 	// Update is called once per frame
@@ -114,8 +115,13 @@ public class TellerManager : MonoBehaviour {
         if (timer < 0 )
         {
             timer = Random.Range(1, 3);
-            if (hero == target)
+            if (hero == target || first)
             {
+                if (first)
+                {
+                    hero = target;
+                }
+
                 tellers[hero].hero = false;
                 int oldHero = hero;
                 while (hero == oldHero && tellers.Length != 1)
@@ -124,6 +130,7 @@ public class TellerManager : MonoBehaviour {
                 }
                 tellers[hero].hero = true;
                 yell = true;
+                first = false;
             }
         }
 	}

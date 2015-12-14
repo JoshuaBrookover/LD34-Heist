@@ -9,6 +9,7 @@ public class Teller : MonoBehaviour {
     public Sprite ScaredSpriteFemale;
     public Sprite BraveSpriteFemale;
     public bool Female;
+    public GameObject ExclamationPrefab;
     float shake = 0.0f;
     float progress = 0.0f;
     Vector3 position = new Vector3(0, 0, 0);
@@ -17,6 +18,7 @@ public class Teller : MonoBehaviour {
     Vector3 endPosition = new Vector3(0, 0, 0);
     Parallax parallax;
     float multiplier = 1.0f;
+    GameObject exclamation;
 
     enum State
     {
@@ -39,6 +41,8 @@ public class Teller : MonoBehaviour {
         endPosition.y = -3;
 
         GetComponent<SpriteRenderer>().sprite = ScaredSprite;
+
+        exclamation = (GameObject)Instantiate(ExclamationPrefab, transform.position + new Vector3(0, 3, 0), Quaternion.identity);
 	}
 
     // Update is called once per frame
@@ -47,7 +51,7 @@ public class Teller : MonoBehaviour {
 
     // order matters, do not trust regular update
     public void DoStuff() {
-        multiplier += Time.deltaTime / 30.0f;
+        multiplier += Time.deltaTime / 5.0f;
         if (hero)
         {
             if (target || state == State.DASH)
@@ -70,7 +74,7 @@ public class Teller : MonoBehaviour {
             case State.PANIC:
             {
                 shake += Time.deltaTime * multiplier;
-                if (shake > 2.0f)
+                if (shake > 5.0f)
                 {
                     state = State.DASH;
                 }
@@ -80,7 +84,7 @@ public class Teller : MonoBehaviour {
             {
                 if (!target)
                 {
-                    float progressTime = 2;//seconds
+                    float progressTime = 5;//seconds
                     progress += Time.deltaTime / progressTime;
                 }
                 if (progress > 1.0f)
@@ -105,10 +109,18 @@ public class Teller : MonoBehaviour {
                 break;
             }
         }
+        if (state == State.PANIC)
+        {
+            exclamation.SetActive(true);
+        }
+        else
+        {
+            exclamation.SetActive(false);
+        }
         position.x += parallax.offset * (1 + (0.5f * progress));
         if (state == State.DASH && !target)
         {
-            float hop = Mathf.Abs(Mathf.Sin(progress * 3.14159f * 1.0f * 8)) * 0.5f;
+            float hop = Mathf.Abs(Mathf.Sin(progress * 3.14159f * 1.0f * 16)) * 0.5f;
             Vector3 to = position;
             to.y = Mathf.Lerp(GetComponent<Transform>().position.y, to.y + hop, 0.4f);
             GetComponent<Transform>().position = to;
@@ -127,7 +139,7 @@ public class Teller : MonoBehaviour {
         if (state == State.DASH && !target)
         {
             GetComponent<SpriteRenderer>().sprite = Female ? BraveSpriteFemale : BraveSprite;
-            Quaternion to = Quaternion.AngleAxis(Mathf.Sin(progress * 3.14159f * 2.0f * 5) * 20.0f, new Vector3(0, 0, 1));
+            Quaternion to = Quaternion.AngleAxis(Mathf.Sin(progress * 3.14159f * 2.0f * 8) * 20.0f, new Vector3(0, 0, 1));
             GetComponent<Transform>().rotation = Quaternion.Slerp(GetComponent<Transform>().rotation, to, 0.3f);
         }
         else
@@ -135,6 +147,8 @@ public class Teller : MonoBehaviour {
             GetComponent<SpriteRenderer>().sprite = Female ? ScaredSpriteFemale : ScaredSprite;
             GetComponent<Transform>().rotation = Quaternion.Slerp(GetComponent<Transform>().rotation, Quaternion.identity, 0.01f);
         }
+
+        exclamation.transform.position = transform.position + new Vector3(0, 3, 0);
 	}
 
     public float GetTargetParallax()
