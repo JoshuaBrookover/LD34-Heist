@@ -26,5 +26,16 @@ public class ChargeUI : MonoBehaviour
 		Vector2 newChargeSpotPosition = 397.0f * playerCharge.chargeFraction * new Vector2( 1.0f, 0.0f );
 		newChargeSpotPosition.x += 8.0f;
 		chargeSpotRect.anchoredPosition = newChargeSpotPosition;
+
+        if ( playerCharge.chargeFraction > playerCharge.correctCharge - playerCharge.chargeError && playerCharge.chargeFraction < playerCharge.correctCharge + playerCharge.chargeError )
+        {
+            float newScale = ( playerCharge.chargeError * 10 ) - Mathf.Abs( ( playerCharge.correctCharge - playerCharge.chargeFraction ) * 10 );
+            Debug.Log(((playerCharge.correctCharge - playerCharge.chargeFraction) * 10));
+            chargeSpotRect.localScale = new Vector3(1 + newScale, 1 + newScale, 1);
+        }
+        else
+        {
+            chargeSpotRect.localScale = new Vector3(1, 1, 1);
+        }
 	}
 }

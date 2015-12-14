@@ -6,14 +6,19 @@ public class GameScript : MonoBehaviour {
 
 	public GameObject scoreParent;
 	public Text scoreText;
+    public GameObject Moneybag;
+    public AnimationClip MoneybagShake;
 	public int moneyBagScore = 1000;
 
 	int score = 0;
 	float outroPause = 1.0f;
     int mPhaseOneMoney;
+    Animation gainMoneyAnim;
 
 	// Use this for initialization
 	void Start () {
+        gainMoneyAnim = Moneybag.GetComponent<Animation>();
+        gainMoneyAnim.AddClip(MoneybagShake, "GainMoney");
 	}
 	
 	// Update is called once per frame
@@ -36,7 +41,8 @@ public class GameScript : MonoBehaviour {
 		score += moneyBagScore;
 
 		if ( scoreText != null ) {
-			scoreText.text = "$" + score.ToString();
+            scoreText.text = "$" + score.ToString();
+            gainMoneyAnim.Play("GainMoney");
 		}
 	}
 

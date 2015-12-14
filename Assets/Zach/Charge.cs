@@ -75,8 +75,8 @@ public class Charge : MonoBehaviour
 		{
 			//Win
 			throwAnimation.AddClip( SuccessAnim, "GoodThrow");
-			throwAnimation.Play("GoodThrow");
-			Object.FindObjectOfType<GameScript>().GotMoneyBag();
+            throwAnimation.Play("GoodThrow");
+            Object.FindObjectOfType<GameScript>().GotMoneyBag();
 
             audioSource.Stop();
             audioSource.clip = ChaChingSound;
