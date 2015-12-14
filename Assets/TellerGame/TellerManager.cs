@@ -8,6 +8,7 @@ public class TellerManager : MonoBehaviour {
     public List<AudioClip> threatenAudio;
     public List<AudioClip> scaredAudioFemale;
     public List<AudioClip> scaredAudioMale;
+    AudioSource audioSource;
     Teller[] tellers;
     int target;
     int hero;
@@ -22,6 +23,7 @@ public class TellerManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         parallax = GameObject.FindGameObjectWithTag("Parallax").GetComponent<Parallax>();
+        audioSource = GetComponent<AudioSource>();
 
         tellers = (Teller[])FindObjectsOfType<Teller>().Clone();
         if (tellers.Length == 0)
@@ -56,24 +58,24 @@ public class TellerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GetComponent<AudioSource>().isPlaying && tellerComplain)
+        if (!audioSource.isPlaying && tellerComplain)
         {
             tellerComplain = false;
 
             bool female = tellers[tellerComplainIndex].Female;
             if (female)
             {
-                GetComponent<AudioSource>().volume = 0.5f;
+                audioSource.volume = 0.08f;
                 soundIndexScared = soundIndexScared % scaredAudioFemale.Count;
-                GetComponent<AudioSource>().clip = scaredAudioFemale[soundIndexScared];
-                GetComponent<AudioSource>().Play();
+                audioSource.clip = scaredAudioFemale[soundIndexScared];
+                audioSource.Play();
             }
             else
             {
-                GetComponent<AudioSource>().volume = 0.5f;
+                audioSource.volume = 0.08f;
                 soundIndexScared = soundIndexScared % scaredAudioMale.Count;
-                GetComponent<AudioSource>().clip = scaredAudioMale[soundIndexScared];
-                GetComponent<AudioSource>().Play();
+                audioSource.clip = scaredAudioMale[soundIndexScared];
+                audioSource.Play();
             }
             soundIndexScared++;
         }
@@ -85,13 +87,13 @@ public class TellerManager : MonoBehaviour {
             tellers[target].target = true;
             if (hero == target && yell)
             {
-                if (GetComponent<AudioSource>().isPlaying)
+                if (audioSource.isPlaying)
                 {
-                    GetComponent<AudioSource>().Stop();
+                    audioSource.Stop();
                 }
-                GetComponent<AudioSource>().clip = threatenAudio[soundIndex];
-                GetComponent<AudioSource>().volume = 0.9f;
-                GetComponent<AudioSource>().Play();
+                audioSource.clip = threatenAudio[soundIndex];
+                audioSource.volume = 0.2f;
+                audioSource.Play();
                 soundIndex = (soundIndex + 1) % threatenAudio.Count;
                 tellerComplain = Random.Range(0, 5) == 0;
                 tellerComplainIndex = hero;
@@ -113,10 +115,13 @@ public class TellerManager : MonoBehaviour {
             teller.DoStuff();
         }
 
-        timer -= Time.deltaTime;
-        if (timer < 0)
+        if (!audioSource.isPlaying)
         {
-            timer = Random.Range(2, 6);
+            timer -= Time.deltaTime;
+        }
+        if (timer < 0 )
+        {
+            timer = Random.Range(1, 3);
             if (hero == target)
             {
                 tellers[hero].hero = false;

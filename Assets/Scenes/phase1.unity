@@ -552,7 +552,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ad6dc43989045014dadecf1667c7d737, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.241
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -633,7 +633,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 561183817}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a0cd8531f17c6824ca2e3e36072162a6, type: 3}
@@ -945,6 +945,10 @@ Prefab:
     - target: {fileID: 165158, guid: a6f215aa765a0574c87aeafe2b8659b8, type: 2}
       propertyPath: m_Name
       value: Teller (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415762, guid: a6f215aa765a0574c87aeafe2b8659b8, type: 2}
+      propertyPath: Female
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6f215aa765a0574c87aeafe2b8659b8, type: 2}
@@ -1896,6 +1900,10 @@ Prefab:
     - target: {fileID: 187532, guid: 6103f905a82b9b54b9b70f0936884828, type: 2}
       propertyPath: m_Name
       value: VaultThrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205944, guid: 6103f905a82b9b54b9b70f0936884828, type: 2}
+      propertyPath: m_Volume
+      value: 0.184
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6103f905a82b9b54b9b70f0936884828, type: 2}

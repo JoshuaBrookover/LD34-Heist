@@ -31,7 +31,8 @@ public class Charge : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if ( (Input.GetAxis( "First" ) > 0 && canCharge) )
+        canCharge = true;
+		if ( (Input.GetButtonDown( "First" ) && canCharge) )
 		{
 			Release();
 			charge = 0.0f;
@@ -67,6 +68,7 @@ public class Charge : MonoBehaviour
 
             audioSource.Stop();
             audioSource.clip = ChaChingSound;
+            audioSource.volume = 0.08f;
             audioSource.Play();
 		}
 		else
@@ -77,6 +79,7 @@ public class Charge : MonoBehaviour
 
             audioSource.Stop();
             audioSource.clip = BuzzerSound;
+            audioSource.volume = 0.07f;
             audioSource.Play();
 		}
 		
