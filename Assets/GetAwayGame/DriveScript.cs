@@ -21,6 +21,11 @@ public class DriveScript : MonoBehaviour
 
     private float mTime = 0.0f;
 
+    bool mSpinning = false;
+    float mSpinLerp = 0.0f;
+    float mSpinLerpSpeed = 1.5f;
+    int mNumSpins = 0;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -94,7 +99,26 @@ public class DriveScript : MonoBehaviour
             RotateToAngle(0);
         }
 
-        this.transform.rotation = Quaternion.AngleAxis(mAngle, Vector3.forward);
+        if(mSpinning)
+        {
+            mSpinLerp += Time.deltaTime * mSpinLerpSpeed;
+            if(mSpinLerp >= 1.0f)
+            {
+                mNumSpins--;
+                if(mNumSpins == 0)
+                {
+                    mSpinLerp = 1.0f;
+                    mSpinning = false;
+                }
+                else
+                {
+                    mSpinLerp = mSpinLerp % 1.0f;
+                }        
+            }
+        }
+
+        float finalAngle = (mAngle + mSpinLerp * 360.0f) % 360.0f;
+        this.transform.rotation = Quaternion.AngleAxis(finalAngle, Vector3.forward);
 
         mPosition += (mDirection ? 1.0f : -1.0f) * mLaneSwitchSpeed * Time.deltaTime;
         if(mPosition > 1.0f)
@@ -127,6 +151,13 @@ public class DriveScript : MonoBehaviour
 
 //         mStop = true;
 //         RoadTileScript.mStopped = true;
+
+        mSpinning = true;
+        if(mSpinLerp >= 1.0f)
+        {
+            mSpinLerp = 0.0f;
+        }
+        mNumSpins++;
 
         var smash = GetComponents<AudioSource>()[0];
         smash.Play();

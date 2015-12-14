@@ -19,7 +19,7 @@ public class RoadTileScript : MonoBehaviour
     private float mDecorationOffset = 4.0f;
 
     public const float mStartSpeed = 12.0f;
-    public const float mEndSpeed = 30.0f;
+    public const float mEndSpeed = 24.0f;
     public const float mSpeedupTime = 60.0f;
     public const float mAcceleration = (mEndSpeed - mStartSpeed) / mSpeedupTime;
     public static float mRoadSpeed = mStartSpeed;
