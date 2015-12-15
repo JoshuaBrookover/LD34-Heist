@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameScript : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class GameScript : MonoBehaviour {
     public GameObject Moneybag;
     public AnimationClip MoneybagShake;
 	public int moneyBagScore = 1000;
+	public List<GameObject> moneyBags;
 
     public GameObject GainMoneyUI;
     public AnimationClip GainMoneyAnim;
@@ -21,6 +23,9 @@ public class GameScript : MonoBehaviour {
 	float outroPause = 1.0f;
     int mPhaseOneMoney;
     Animation gainMoneyAnim;
+    int currentMoneyBag = 0;
+
+    int moneyCounter = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -59,6 +64,14 @@ public class GameScript : MonoBehaviour {
 
             throwAnimation.AddClip(GainMoneyAnim, "GainMoneyUI");
             throwAnimation.Play("GainMoneyUI");
+		}
+	}
+
+	public void EnableMoneyBag() {
+		if ( moneyCounter++ % 3 == 0 ) {
+			if (currentMoneyBag < moneyBags.Count) {
+				moneyBags[currentMoneyBag++].SetActive(true);
+			}
 		}
 	}
 

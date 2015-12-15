@@ -5,7 +5,6 @@ public class DestroySelfEvent : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -16,5 +15,9 @@ public class DestroySelfEvent : MonoBehaviour {
 	void DestroySelf()
 	{
 		Destroy( this.gameObject );
+	}
+
+	void EnableMoney() {
+        Object.FindObjectOfType<GameScript>().EnableMoneyBag();
 	}
 }
