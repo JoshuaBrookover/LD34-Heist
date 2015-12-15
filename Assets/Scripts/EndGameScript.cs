@@ -10,6 +10,7 @@ public class EndGameScript : MonoBehaviour {
     private int mMoneyCounter = 0;
     private int mScore = 0;
     private float mWaitTime = 0;
+    private float mButtonDelay = 1.0f;
 
     void SetText(int count)
     {
@@ -54,7 +55,8 @@ public class EndGameScript : MonoBehaviour {
         SetText(mMoneyCounter);
 
 
-        if (mWaitTime > screenPause || Input.GetButtonDown("First"))
+        mButtonDelay -= Time.deltaTime;
+        if (mWaitTime > screenPause || (Input.GetButtonDown("First") && mButtonDelay < 0.0f))
         {
             //yield return new WaitForSeconds(screenPause);
             Application.LoadLevel("menu");     
