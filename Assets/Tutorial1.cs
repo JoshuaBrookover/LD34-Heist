@@ -18,7 +18,7 @@ public class Tutorial1 : MonoBehaviour {
     float s4Timer = 2.0f;
     float s5FocusFade = 0.0f;
     float s6Timer = 5.0f;
-    float s8Timer = 3.0f;
+    float s8Timer = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -99,6 +99,8 @@ public class Tutorial1 : MonoBehaviour {
         {
             s5FocusFade -= Time.deltaTime;
             Text2.SetActive(false);
+            Text3.SetActive(true);
+            ButtonIcon2.SetActive(false);
             Focus2.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, s5FocusFade);
             if (s5FocusFade <= 0)
             {
@@ -107,9 +109,6 @@ public class Tutorial1 : MonoBehaviour {
         }
         else if (state == 8)
         {
-            ButtonIcon2.SetActive(false);
-            Text2.SetActive(false);
-            Text3.SetActive(true);
             s8Timer -= Time.deltaTime;
             if (s8Timer <= 0.0f)
             {
