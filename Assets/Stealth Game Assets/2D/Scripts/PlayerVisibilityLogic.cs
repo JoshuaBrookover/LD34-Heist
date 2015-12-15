@@ -41,6 +41,8 @@ public class PlayerVisibilityLogic : MonoBehaviour {
         if (isVisible) {
             print ("Found you!");
 
+            HealthScript.mPublicHealthScript.TakeLife();
+
             GameObject.FindGameObjectWithTag("DistanceBar").GetComponent<DistanceChecker>().distanceOffset = this.transform.position.x;
         }
 
