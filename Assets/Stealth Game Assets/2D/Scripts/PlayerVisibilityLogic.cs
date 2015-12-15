@@ -38,8 +38,11 @@ public class PlayerVisibilityLogic : MonoBehaviour {
     void FindExposedPlayer(GameObject caller) {
         
         // Ignore if hidden.
-        if (isVisible) {
+        if (isVisible) 
+        {
             print ("Found you!");
+
+            GetComponents<AudioSource>()[1].Play();
 
             HealthScript.mPublicHealthScript.TakeLife();
 
