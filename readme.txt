@@ -7,6 +7,7 @@ Created By
 - Martin Lande
 - Thaddeus Korhman
 - Tim Ullrich
+- Zach Hiscocks
 
 Music
 - "Blue Tuesday" by RubberBandMethod (http://www.newgrounds.com/audio/listen/625171)
